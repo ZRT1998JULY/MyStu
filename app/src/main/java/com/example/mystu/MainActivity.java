@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         webView.canGoBack();
         webView.canGoForward();
-        webView.loadUrl("http://idas.uestc.edu.cn/authserver/login?service=http://portal.uestc.edu.cn/index.portal");
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.loadUrl("http://idas.uestc.edu.cn/authserver/login?service=http%3A%2F%2Fportal.uestc.edu.cn%2F");
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         TextOutsideCircleButton.Builder buildersecond=new TextOutsideCircleButton.Builder().listener(new OnBMClickListener() {
             @Override
             public void onBoomButtonClick(int index) {
-                Toast.makeText(MainActivity.this,"Clicked"+index,Toast.LENGTH_SHORT).show();
+                Intent intentsecond=new Intent(MainActivity.this,WebActivity.class);
+                startActivity(intentsecond);
             }
         })
                 .normalImageRes(imageResources[1])
