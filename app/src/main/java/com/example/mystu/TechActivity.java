@@ -75,7 +75,8 @@ public class TechActivity extends AppCompatActivity {
         TextOutsideCircleButton.Builder builderthird=new TextOutsideCircleButton.Builder().listener(new OnBMClickListener() {
             @Override
             public void onBoomButtonClick(int index) {
-                Toast.makeText(TechActivity.this,"Clicked"+index,Toast.LENGTH_SHORT).show();
+                Intent intentsecond=new Intent(TechActivity.this,InsitActivity.class);
+                startActivity(intentsecond);
             }
         })
                 .normalImageRes(imageResources[2])
@@ -123,7 +124,7 @@ public class TechActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     webView.clearFormData();
-                    Toast.makeText(TechActivity.this, "历史记录已清除", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TechActivity.this, "缓存已清除", Toast.LENGTH_SHORT).show();
                 }
             });
             dialog.setNegativeButton("否", new DialogInterface.OnClickListener() {
@@ -132,10 +133,12 @@ public class TechActivity extends AppCompatActivity {
                     Toast.makeText(TechActivity.this, "操作取消", Toast.LENGTH_SHORT).show();
                 }
             });
+            dialog.show();
 
             return true;
         } else if (id == R.id.find_history) {
-            webView.clearCache(true);
+            Intent intent=new Intent(TechActivity.this,SettingActivity.class);
+            startActivity(intent);
             return true;
         }
 

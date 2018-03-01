@@ -11,8 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.nightonke.boommenu.BoomButtons.OnBMClickListener;
@@ -24,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private WebView webView;
 
     private Toolbar toolbar;
+
+    private ProgressBar progress;
 
     private static int index=0;
 
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        progress=(ProgressBar)findViewById(R.id.progress_bar_main) ;
 
         BoomMenuButton boomMenuButton=(BoomMenuButton)findViewById(R.id.boom) ;
         webView=(WebView)findViewById(R.id.web_view);
@@ -52,6 +57,19 @@ public class MainActivity extends AppCompatActivity {
         webView.canGoForward();
         webView.getSettings().setBuiltInZoomControls(true);
         webView.loadUrl("http://idas.uestc.edu.cn/authserver/login?service=http%3A%2F%2Fportal.uestc.edu.cn%2F");
+        webView.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view,int newProgress){
+                if(newProgress<100){
+                   // String progress=newProgress+"%";
+                    progress.setVisibility(view.VISIBLE);
+                    progress.setProgress(newProgress);
+                }else {
+                    progress.setVisibility(view.GONE);
+
+                }
+            }
+        });
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
         TextOutsideCircleButton.Builder builderthird=new TextOutsideCircleButton.Builder().listener(new OnBMClickListener() {
             @Override
             public void onBoomButtonClick(int index) {
-                Toast.makeText(MainActivity.this,"Clicked"+index,Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(MainActivity.this,InsitActivity.class);
+                startActivity(intent);
             }
         })
                 .normalImageRes(imageResources[2])
@@ -159,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     webView.clearFormData();
-                    Toast.makeText(MainActivity.this,"历史记录已清除",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"缓存已清除",Toast.LENGTH_SHORT).show();
                 }
             });
             dialog.setNegativeButton("否", new DialogInterface.OnClickListener() {
@@ -168,10 +187,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"操作取消",Toast.LENGTH_SHORT).show();
                 }
             });
+            dialog.show();
 
             return true;
         }else if(id==R.id.find_history){
-            webView.clearCache(true);
+            Intent intent=new Intent(MainActivity.this,SettingActivity.class);
+            startActivity(intent);
             return true;
         }
 

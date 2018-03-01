@@ -22,7 +22,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".TechActivity" />
-        <activity android:name=".WebActivity"></activity>
+        <activity android:name=".WebActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".InsitActivity"></activity>
     </application>
 
 </manifest>

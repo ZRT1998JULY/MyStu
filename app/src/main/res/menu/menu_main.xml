@@ -31,7 +31,7 @@
         android:id="@+id/find_history"
         android:orderInCategory="100"
         android:icon="@mipmap/ic_find_history"
-        android:title="历史记录"
+        android:title="设置"
         app:showAsAction="never|withText" />
 
 </menu>
