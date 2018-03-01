@@ -1,0 +1,37 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.mystu.MainActivity">
+
+    <item
+        android:id="@+id/go_back"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_back"
+        android:title="返回"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/refresh_page"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_refresh"
+        android:title="刷新"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/clean_history"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_clean_history"
+        android:title="清空历史记录"
+        app:showAsAction="never|withText" />
+    <item
+        android:id="@+id/clean_date"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_clean_date"
+        android:title="清除所有数据"
+        app:showAsAction="never|withText" />
+    <item
+        android:id="@+id/find_history"
+        android:orderInCategory="100"
+        android:icon="@mipmap/ic_find_history"
+        android:title="历史记录"
+        app:showAsAction="never|withText" />
+
+</menu>
